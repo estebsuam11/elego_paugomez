@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <link crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Elego Solutions LLC - Home</title>
+    <link rel="shortcut icon" href="{% static "src/logoi.svg" %}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"  rel="stylesheet">
+
+    <link type='text/css'  href="{% static "css/responsive.css" %}" rel="stylesheet"/>
+    <script src="{% static "js/script.js" %}"></script>
+    
+</head>
+
+<body>
+    <header class="header">
+        <nav class="menu">
+            <section class="menu__container">
+                <img src="{% static "src/logoi.svg" %}" class="logo">
+
+                <div class="contenedor_header">
+                    <h1>ELE<span class="yellow">G</span>O S<span class="yellow">O</span>LUTIONS LLC</h1>
+                    <style>
+                    .yellow {
+                      color: #ffbb00;
+                    }
+                    </style>
+
+                    <h2>We love take care your place</h2>
+                </div>
+                
+                <ul class="menu__links">
+                    <li class="menu__item">
+                        <a href="{% url "home" %}" class="menu__link">Home</a>
+                    </li>
+        
+                    <li class="menu__item menu__item--show">
+                        <a href="{% url "services:services" %}" class="menu__link">All services <img src="{% static "src/arrow.svg" %}" class="menu__arrow"></a>
+                    
+                <ul class="menu__nesting">
+                            
+                <div>
+                    <ul>
+                        <li class="menu__inside">
+                            <a href="{% url "handy" %}" class="menu__link menu__link--inside">Handyman</a>
+                        </li>
+                        <ul>
+                            <li class="lista-submenu">
+                                <a href="{% url "handy" %}">camaras</a>
+                                <a href="{% url "handy" %}">timbres </a>
+                                <a href="{% url "handy" %}">televisores</a>
+                                <a href="{% url "handy" %}">Cables</a>
+                                <a href="{% url "handy" %}">ventiladores</a>
+                                <a href="{% url "handy" %}">Lamparas y luces</a>
+                                <a href="{% url "handy" %}">sonido</a>
+                                <a href="{% url "handy" %}">videobeam</a>
+                                <a href="{% url "handy" %}">assembling</a>
+                                <a href="{% url "handy" %}">hanging</a>
+                                <a href="{% url "handy" %}">faucet and toilet</a>
+                                <a href="{% url "handy" %}">painting</a>
+                            </li>
+                        </ul>
+                    </ul>
+                
+                    <ul>
+                        <li class="menu__inside">
+                            <a href="cleaning.html" class="menu__link menu__link--inside">Cleaning</a>
+                        </li>
+                        <ul>
+                        <li class="lista-submenu">
+                            <a href="residential.html">residential</a>
+                            <a href="moving.html">moving</a>
+                            <a href="vacacional.html">vacational</a>
+                            <a href="empresas.html">empresas</a>
+                            <a href="canaletas.html">canaletas</a>
+                            <a href="profundas.html">profundas</a>
+                            <a href="maquina.html">maquina presion</a>
+                            <a href="ventanas y canaletas.html">ventanas</a>
+                        </li>
+                        </ul>
+                    </ul>
+
+                    <ul>
+                        <li class="menu__inside">
+                            <a href="landscaping.html" class="menu__link menu__link--inside">Window</a>
+                        </li>
+                        <ul>
+                            <li class="lista-submenu">
+                                <a href="">claning</a>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+                </ul>
+
+                <li class="menu__item">
+                    <a href="{% url "services:reserve" %}" class="menu__link">Reserve</a>
+                </li>
+                
+                <li class="menu__item">
+                    <a href="contact-responsive.html" class="menu__link">Contact us</a>
+                </li></li></ul>
+    
+                <div class="menu__hamburguer">
+                    <img src="{% static "src/menu.svg" %}" class="menu__img">
+                </div>
+            </section>
+        </nav>
+        <script>
+            (function(){
+                const listElements = document.querySelectorAll('.menu__item--show');
+                const list = document.querySelector('.menu__links');
+                const menu = document.querySelector('.menu__hamburguer');
+                const addClick = ()=>{
+                    listElements.forEach(element =>{
+                        element.addEventListener('click', ()=>{
+                            
+                            let subMenu = element.children[1];
+                            let height = 0;
+                            element.classList.toggle('menu__item--active');
+            
+                            if(subMenu.clientHeight === 0){
+                                height = subMenu.scrollHeight;
+                            }
+            
+                            subMenu.style.height = `${height}px`;
+                        });
+                    });
+                }
+            
+                const deleteStyleHeight = ()=>{
+                    listElements.forEach(element=>{
+            
+                        if(element.children[1].getAttribute('style')){
+                            element.children[1].removeAttribute('style');
+                            element.classList.remove('menu__item--active');
+                        }
+                    });
+                }
+            
+                window.addEventListener('resize', ()=>{
+                    if(window.innerWidth > 800){
+                        deleteStyleHeight();
+                        if(list.classList.contains('menu__links--show'))
+                            list.classList.remove('menu__links--show');
+                    }else{
+                        addClick();
+                    }
+                });
+            
+                if(window.innerWidth <= 800){
+                    addClick();
+                }
+            
+                menu.addEventListener('click', ()=> list.classList.toggle('menu__links--show'));
+            
+            })();
+
+              
+        </script>
+
+    </header>
+
+    <div class="slider">
+		<!-- fade css -->
+		<div class="myslide fade">
+			<div class="txt">
+                    <a href="reserve-responsive.html">
+                        <button class="booking">Booking</button>
+                    </a>
+			</div>
+			<img src="{% static "img/IMG_0829.jpg" %}" style="max-width: 100%; height: auto;">
+		</div>
+		
+		<div class="myslide fade">
+			<div class="txt">
+				<a href="reserve-responsive.html">
+                    <button class="booking">Booking</button>
+                </a>
+			</div>
+			<img src="{% static "img/PHOTO-2022-07-24-12-42-45 (1).jpg" %}" style="max-width: 100%; height: auto;">
+		</div>
+		
+		<div class="myslide fade">
+			<div class="txt">
+				<a href="reserve-responsive.html">
+                    <button class="booking">Booking</button>
+                </a>
+			</div>
+			<img src="{% static "img/espejoslide.jpg" %}" style="max-width: 100%; height: auto;">
+		</div>
+		
+		<div class="myslide fade">
+			<div class="txt">
+				<a href="reserve-responsive.html">
+                    <button class="booking">Booking</button>
+                </a>
+			</div>
+			<img src="{% static "img/airbnb.jpg" %}" style="max-width: 100%; height: auto;">
+		</div>
+		
+		<div class="myslide fade">
+			<div class="txt">
+				<a href="reserve-responsive.html">
+                    <button class="booking">Booking</button>
+                </a>
+			</div>
+			<img src="{% static "img/cuartoairbnb.jpg" %}" style="max-width: 100%; height: auto;">
+		</div>
+		<!-- /fade css -->
+		
+		<!-- onclick js -->
+		<a class="prev" onclick="plusSlides(-1)">❮</a>
+  		<a class="next" onclick="plusSlides(1)">❯</a>
+		
+		<div class="dotsbox" style="text-align:center">
+			<span class="dot" onclick="currentSlide(1)"></span>
+			<span class="dot" onclick="currentSlide(2)"></span>
+			<span class="dot" onclick="currentSlide(3)"></span>
+			<span class="dot" onclick="currentSlide(4)"></span>
+			<span class="dot" onclick="currentSlide(5)"></span>
+		</div>
+		<!-- /onclick js -->
+	</div>
+
+    <script>
+        const myslide = document.querySelectorAll('.myslide'),
+            dot = document.querySelectorAll('.dot');
+        let counter = 1;slidefun(counter);
+        let timer = setInterval(autoSlide, 8000);
+        
+        function autoSlide() {
+            counter += 1;
+	    slidefun(counter);
+        }
+        function plusSlides(n) {
+	        counter += n;
+	        slidefun(counter);
+	        resetTimer();
+        }
+        function currentSlide(n) {
+	        counter = n;
+	        slidefun(counter);
+	        resetTimer();
+        }
+        function resetTimer() {
+	        clearInterval(timer);
+	        timer = setInterval(autoSlide, 8000);
+        }
+
+function slidefun(n) {
+	
+	let i;
+	for(i = 0;i<myslide.length;i++){
+		myslide[i].style.display = "none";
+	}
+	for(i = 0;i<dot.length;i++) {
+		dot[i].className = dot[i].className.replace(' active', '');
+	}
+	if(n > myslide.length){
+	   counter = 1;
+	   }
+	if(n < 1){
+	   counter = myslide.length;
+	   }
+	myslide[counter - 1].style.display = "block";
+	dot[counter - 1].className += " active";
+}
+    </script>
+
+    <div class="contenedor1">
+        <div id="header-img">
+            <a href="#">
+                <img  src="{% static "src/insta_logo.svg" %}">
+            </a>
+            <a href="#">
+                <img  src="{% static "src/faceb_logo.svg" %}">
+            </a>
+            <a href="#">
+                <img src="{% static "src/whatsapp_logo.svg" %}">
+            </a>
+        </div> 
+    </div>
+
+    <div class="titulo">
+        <h1>Elego Solutions LLC, it's here to last, from mundane to complex, it has it all</h1>
+        <p> 
+            <br>
+            QUÉ?  Ofrecer un servicio de calidad como solución a los clientes<br>
+            CÓMO? Manteniendo los espacios de los clientes bajo sus expectativas <br>
+            PARA QUÉ? Hacer que las personas puedan sentirse en un lugar agradable y cuidado mientras
+            aprovechan el tiempo en actividades de su propio interés.
+        </p>
+        <p> 
+            <br>
+            Ofrecer un servicio de calidad como solución a las personas que desean cuidar sus espacios
+            manteniéndolos bajo sus expectativas para que puedan sentirse en un lugar agradable y cuidado
+            mientras aprovechan el tiempo en actividades de su propio interés.
+        </p>
+    </div>
+
+    <div class="parrafo1">
+        <h1>
+            Perfect environment for people
+        </h1>
+        <p> 
+            Ser  una solución para  las personas manteniendo sus ambientes armoniosos y cuidados
+            para que puedan desarrollar sus otras actividades tranquilamente 
+        </p>
+    </div>
+
+
+<div class="bloque">
+    <p> 
+        Somos un equipo de personas llenas de vitalidad que nos esforzamos día  a día en ofrecer soluciones
+        a las familias para que puedan destinar su tiempo a otras actividades mientras nosotros nos encargamos
+        de mantener sus espacios limpios y armoniosos bajo sus expectativas. <br> <br> </p>
+        <h4>
+        Elego Solutions LLC cree inmensamente que los espacios tanto de familia, trabajo, esparcimiento deben
+        estar limpios, armoniosos y agradables para disfrutar. Entendemos que la mayoría de las personas en
+        Colorado quieren tener sus lugares en estas condiciones pero muchas veces los compromisos laborales
+        no les permiten realizar las tareas y hay ciertos servicios que requieren una mano extra.
+    </h4>
+</div>
+
+<footer>
+    <h3>Elego Solutions LLC</h3>
+    <div id="email">
+        <p>email:elegosolutionsllc@gmail.com</p>
+    </div>
+</footer>
+
+
+
+</body>
+</html>

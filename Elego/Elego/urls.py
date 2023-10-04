@@ -15,11 +15,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+
 from django.urls import path, include
-from Reserves.views import index
+from Elego.views import HomeView
+from Elego.views import HandyView
+from Elego.views import *
+
+
+
+
+
 
 urlpatterns = [
-    path('',include('Reserves.urls')),
+    
+    
     path('admin/', admin.site.urls),
-    path('index/', index),
+    path('', HomeView.as_view(), name="home"),
+    path('handy/', HandyView.as_view(), name="handy"),
+    #path('reserve/', ReserveView.as_view(), name="reserve"),
+    path('services/', include('Reserves.urls', namespace='services')),
+    
+    
+   
 ]

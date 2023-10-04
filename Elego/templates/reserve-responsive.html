@@ -1,0 +1,624 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <link crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Elego Solutions LLC- Reserve</title>
+    <link rel="shortcut icon" href="{% static "src/logoi.svg" %}"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"  rel="stylesheet">
+    <link type='text/css'  href="{% static "css/responsive.css" %}" rel="stylesheet"/>
+</head>
+<body>
+    <header class="header">
+        <nav class="menu">
+            <section class="menu__container">
+                <img src="{% static "src/logoi.svg" %}" class="logo">
+
+                <div class="contenedor_header">
+                    <h1>ELE<span class="yellow">G</span>O S<span class="yellow">O</span>LUTIONS LLC</h1>
+                    <style>
+                    .yellow {
+                      color: #ffbb00;
+                    }
+                    </style>
+
+                    <h2>We love take care your place</h2>
+                </div>
+                
+                <ul class="menu__links">
+                    <li class="menu__item">
+                        <a href="index-responsive.html" class="menu__link">Home</a>
+                    </li>
+        
+                    <li class="menu__item menu__item--show">
+                        <a href="services-responsive.html" class="menu__link">All services <img src="{% static "src/arrow.svg" %}" class="menu__arrow"></a>
+                    
+                <ul class="menu__nesting">
+                            
+                <div>
+                    <ul>
+                        <li class="menu__inside">
+                            <a href="#" class="menu__link menu__link--inside">Handyman</a>
+                        </li>
+                        <ul>
+                            <li class="lista-submenu">
+                                <a href="{% url "handy" %}">camaras</a>
+                                <a href="{% url "handy" %}">timbres </a>
+                                <a href="{% url "handy" %}">televisores</a>
+                                <a href="{% url "handy" %}">Cables</a>
+                                <a href="{% url "handy" %}">ventiladores</a>
+                                <a href="{% url "handy" %}">Lamparas y luces</a>
+                                <a href="{% url "handy" %}">sonido</a>
+                                <a href="{% url "handy" %}">videobeam</a>
+                                <a href="{% url "handy" %}">assembling</a>
+                                <a href="{% url "handy" %}">hanging</a>
+                                <a href="{% url "handy" %}">faucet and toilet</a>
+                                <a href="{% url "handy" %}">painting</a>
+                            </li>
+                        </ul>
+                    </ul>
+                
+                    <ul>
+                        <li class="menu__inside">
+                            <a href="#" class="menu__link menu__link--inside">Cleaning</a>
+                        </li>
+                        <ul>
+                        <li class="lista-submenu">
+                            <a href="residential.html">residential</a>
+                            <a href="moving.html">moving</a>
+                            <a href="vacacional.html">vacational</a>
+                            <a href="empresas.html">empresas</a>
+                            <a href="canaletas.html">canaletas</a>
+                            <a href="profundas.html">profundas</a>
+                            <a href="maquina.html">maquina presion</a>
+                            <a href="ventanas y canaletas.html">ventanas</a>
+                        </li>
+                        </ul>
+                    </ul>
+
+                    <ul>
+                        <li class="menu__inside">
+                            <a href="landscaping.html" class="menu__link menu__link--inside">Landscaping</a>
+                        </li>
+                        <ul>
+                            <li class="lista-submenu">
+                                <a href="">gardening</a>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+                </ul>
+
+                <li class="menu__item">
+                    <a href="reserve-responsive.html" class="menu__link">Reserve</a>
+                </li>
+                
+                <li class="menu__item">
+                    <a href="contact-responsive.html" class="menu__link">Contact us</a>
+                </li></li></ul>
+    
+                <div class="menu__hamburguer">
+                    <img src="menu.svg" class="menu__img">
+                </div>
+            </section>
+        </nav>
+        <script>
+            (function(){
+                const listElements = document.querySelectorAll('.menu__item--show');
+                const list = document.querySelector('.menu__links');
+                const menu = document.querySelector('.menu__hamburguer');
+                const addClick = ()=>{
+                    listElements.forEach(element =>{
+                        element.addEventListener('click', ()=>{
+                            
+                            let subMenu = element.children[1];
+                            let height = 0;
+                            element.classList.toggle('menu__item--active');
+            
+                            if(subMenu.clientHeight === 0){
+                                height = subMenu.scrollHeight;
+                            }
+            
+                            subMenu.style.height = `${height}px`;
+                        });
+                    });
+                }
+            
+                const deleteStyleHeight = ()=>{
+                    listElements.forEach(element=>{
+            
+                        if(element.children[1].getAttribute('style')){
+                            element.children[1].removeAttribute('style');
+                            element.classList.remove('menu__item--active');
+                        }
+                    });
+                }
+            
+                window.addEventListener('resize', ()=>{
+                    if(window.innerWidth > 800){
+                        deleteStyleHeight();
+                        if(list.classList.contains('menu__links--show'))
+                            list.classList.remove('menu__links--show');
+                    }else{
+                        addClick();
+                    }
+                });
+            
+                if(window.innerWidth <= 800){
+                    addClick();
+                }
+            
+                menu.addEventListener('click', ()=> list.classList.toggle('menu__links--show'));
+            
+            })();
+
+              
+        </script>
+
+    </header>
+
+    <div class="contenedores-servicios">
+        <h4>Reserve</h4>
+    </div>
+
+      <div class="container">
+        <div class="title">Information</div>
+        <div class="content">
+          <form method='POST' action="#">
+            {% csrf_token %}
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">Full Name</span>
+                <input type="text" name='fullname' placeholder="Enter your name" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Address</span>
+                <input type="text" name='address' placeholder="Enter your adress" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Email</span>
+                <input type="text" name='email' placeholder="Enter your email" required>
+              </div>
+              <div class="input-box">
+                <span class="details">Phone Number</span>
+                <input type="text" placeholder="Enter your number" required>
+              </div>
+              <div class="input-box">
+                <span class="details">ZIP code</span>
+                <input type="text" placeholder="Enter your ZIP code" required>
+              </div>
+              <div class="input-box">
+                <span class="details">What service do you want</span>
+                <input type="text" placeholder="Handyman / Cleaning / Landscaping" required>
+              </div>
+            </div>
+            
+            <div class="button">
+              <input type="submit" value="Aceptar">
+            </div>
+          </form>
+        </div>
+      </div>
+  
+    <script>
+      let starValue = 2;
+  let disabledBtn = document.getElementById("disabledBtn");
+  disabledBtn.disabled = true;
+  
+  function addValueFunction(valuePar) {
+      if (valuePar.value == 'increase' && starValue < 10) {
+          starValue++;
+      } else if (valuePar.value == 'decrease' && starValue > 2) {
+          starValue--;
+      }
+      
+      document.getElementById("amount").textContent = starValue;
+  
+      if (starValue == 0) {
+          disabledBtn.disabled = true;
+      } else {
+          disabledBtn.disabled = false;
+      }
+  }
+    </script>
+
+    <div class="container2">
+        <div class="left">
+          <div class="calendar">
+            <div class="month">
+              <i class="fas fa-angle-left prev"></i>
+              <div class="date">August 2023</div>
+              <i class="fas fa-angle-right next"></i>
+            </div>
+            <div class="weekdays">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+            <div class="days"></div>
+            <div class="goto-today">
+              <div class="goto">
+                <input type="text" placeholder="mm/yyyy" class="date-input" />
+                <button class="goto-btn">Go</button>
+              </div>
+              <button class="today-btn">Today</button>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="today-date">
+            <div class="event-day">wed</div>
+            <div class="event-date">12 th december 2022</div>
+          </div>
+        </div>
+      </div>
+      
+    <script>const calendar = document.querySelector(".calendar"),
+      date = document.querySelector(".date"),
+      daysContainer = document.querySelector(".days"),
+      prev = document.querySelector(".prev"),
+      next = document.querySelector(".next"),
+      todayBtn = document.querySelector(".today-btn"),
+      gotoBtn = document.querySelector(".goto-btn"),
+      dateInput = document.querySelector(".date-input"),
+      eventDay = document.querySelector(".event-day"),
+      eventDate = document.querySelector(".event-date"),
+      eventsContainer = document.querySelector(".events"),
+      addEventSubmit = document.querySelector(".add-event-btn ");
+    
+    let today = new Date();
+    let activeDay;
+    let month = today.getMonth();
+    let year = today.getFullYear();
+    
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    
+    const eventsArr = [];
+    getEvents();
+    console.log(eventsArr);
+    
+  ////función agregar días y prev-date next en el mes anterior y días del mes siguiente y activo en hoy
+    function initCalendar() {
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const prevLastDay = new Date(year, month, 0);
+      const prevDays = prevLastDay.getDate();
+      const lastDate = lastDay.getDate();
+      const day = firstDay.getDay();
+      const nextDays = 7 - lastDay.getDay() - 1;
+    
+      date.innerHTML = months[month] + " " + year;
+    
+      let days = "";
+    
+      for (let x = day; x > 0; x--) {
+        days += `<div class="day prev-date">${prevDays - x + 1}</div>`;
+      }
+    
+      for (let i = 1; i <= lastDate; i++) {
+        //check if event is present on that day
+        let event = false;
+        eventsArr.forEach((eventObj) => {
+          if (
+            eventObj.day === i &&
+            eventObj.month === month + 1 &&
+            eventObj.year === year
+          ) {
+            event = true;
+          }
+        });
+        if (
+          i === new Date().getDate() &&
+          year === new Date().getFullYear() &&
+          month === new Date().getMonth()
+        ) {
+          activeDay = i;
+          getActiveDay(i);
+          updateEvents(i);
+          if (event) {
+            days += `<div class="day today active event">${i}</div>`;
+          } else {
+            days += `<div class="day today active">${i}</div>`;
+          }
+        } else {
+          if (event) {
+            days += `<div class="day event">${i}</div>`;
+          } else {
+            days += `<div class="day ">${i}</div>`;
+          }
+        }
+      }
+    
+      for (let j = 1; j <= nextDays; j++) {
+        days += `<div class="day next-date">${j}</div>`;
+      }
+      daysContainer.innerHTML = days;
+      addListner();
+    }
+    
+    //function to add month and year on prev and next button
+    function prevMonth() {
+      month--;
+      if (month < 0) {
+        month = 11;
+        year--;
+      }
+      initCalendar();
+    }
+    
+    function nextMonth() {
+      month++;
+      if (month > 11) {
+        month = 0;
+        year++;
+      }
+      initCalendar();
+    }
+    
+    prev.addEventListener("click", prevMonth);
+    next.addEventListener("click", nextMonth);
+    
+    initCalendar();
+    
+    //function to add active on day
+    function addListner() {
+      const days = document.querySelectorAll(".day");
+      days.forEach((day) => {
+        day.addEventListener("click", (e) => {
+          getActiveDay(e.target.innerHTML);
+          updateEvents(Number(e.target.innerHTML));
+          activeDay = Number(e.target.innerHTML);
+          //remove active
+          days.forEach((day) => {
+            day.classList.remove("active");
+          });
+          //if clicked prev-date or next-date switch to that month
+          if (e.target.classList.contains("prev-date")) {
+            prevMonth();
+            //add active to clicked day afte month is change
+            setTimeout(() => {
+              //add active where no prev-date or next-date
+              const days = document.querySelectorAll(".day");
+              days.forEach((day) => {
+                if (
+                  !day.classList.contains("prev-date") &&
+                  day.innerHTML === e.target.innerHTML
+                ) {
+                  day.classList.add("active");
+                }
+              });
+            }, 100);
+          } else if (e.target.classList.contains("next-date")) {
+            nextMonth();
+            //add active to clicked day afte month is changed
+            setTimeout(() => {
+              const days = document.querySelectorAll(".day");
+              days.forEach((day) => {
+                if (
+                  !day.classList.contains("next-date") &&
+                  day.innerHTML === e.target.innerHTML
+                ) {
+                  day.classList.add("active");
+                }
+              });
+            }, 100);
+          } else {
+            e.target.classList.add("active");
+          }
+        });
+      });
+    }
+    
+    todayBtn.addEventListener("click", () => {
+      today = new Date();
+      month = today.getMonth();
+      year = today.getFullYear();
+      initCalendar();
+    });
+  
+    
+    gotoBtn.addEventListener("click", gotoDate);
+    
+    function gotoDate() {
+      console.log("here");
+      const dateArr = dateInput.value.split("/");
+      if (dateArr.length === 2) {
+        if (dateArr[0] > 0 && dateArr[0] < 13 && dateArr[1].length === 4) {
+          month = dateArr[0] - 1;
+          year = dateArr[1];
+          initCalendar();
+          return;
+        }
+      }
+      alert("Invalid Date");
+    }
+    
+    // función obtiene nombre y fecha del día activo y actualiza el día del evento y fecha del evento
+    function getActiveDay(date) {
+      const day = new Date(year, month, date);
+      const dayName = day.toString().split(" ")[0];
+      eventDay.innerHTML = dayName;
+      eventDate.innerHTML = date + " " + months[month] + " " + year;
+    }
+    
+    //eventos de updat de función cuando un día está activo
+    function updateEvents(date) {
+      let events = "";
+      eventsArr.forEach((event) => {
+        if (
+          date === event.day &&
+          month + 1 === event.month &&
+          year === event.year
+        ) {
+          event.events.forEach((event) => {
+            events += `<div class="event">
+                <div class="title">
+                  <i class="fas fa-circle"></i>
+                  <h3 class="event-title">${event.title}</h3>
+                </div>
+                <div class="event-time">
+                  <span class="event-time">${event.time}</span>
+                </div>
+            </div>`;
+          });
+        }
+      });
+    
+    }
+  
+    
+    document.addEventListener("click", (e) => {
+      if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
+        addEventWrapper.classList.remove("active");
+      }
+    });
+    
+    defineProperty();
+  
+    //agregar evento
+    addEventSubmit.addEventListener("click", () => {
+      const eventTitle = addEventTitle.value;
+      const eventTimeFrom = addEventFrom.value;
+      const eventTimeTo = addEventTo.value;
+      if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
+        return;
+      }
+    
+      const timeFrom = convertTime(eventTimeFrom);
+      const timeTo = convertTime(eventTimeTo);
+    
+      console.log(eventsArr);
+      addEventWrapper.classList.remove("active");
+      addEventTitle.value = "";
+      addEventFrom.value = "";
+      addEventTo.value = "";
+      updateEvents(activeDay);
+      
+      //seleccione día activo y agregue la clase de evento si no se agregó
+      const activeDayEl = document.querySelector(".day.active");
+      if (!activeDayEl.classList.contains("event")) {
+        activeDayEl.classList.add("event");
+      }
+    });
+    
+    // función para obtener eventos del almacenamiento local
+    function getEvents() {
+      //check if events are already saved in local storage then return event else nothing
+      if (localStorage.getItem("events") === null) {
+        return;
+      }
+      eventsArr.push(...JSON.parse(localStorage.getItem("events")));
+    }
+    
+    
+    function convertTime(time) {
+      //convertir la hora a formato de 24 horas
+      let timeArr = time.split(":");
+      let timeHour = timeArr[0];
+      let timeMin = timeArr[1];
+      let timeFormat = timeHour >= 12 ? "PM" : "AM";
+      timeHour = timeHour % 12 || 12;
+      time = timeHour + ":" + timeMin + " " + timeFormat;
+      return time;
+    }</script>
+
+    <div class="hours">
+        <div class="numberhours">
+          <h6>Seleccione numero de horas del servicio</h6>
+          
+            <button id="disabledBtn" onclick="addValueFunction(this)" value="decrease" class="botonhora">
+                -
+            </button>
+    
+            <div class="value_cont">
+                <h5 id="amount" value="">2</h5>
+            </div>
+    
+            <button onclick="addValueFunction(this)" value="increase" class="botonhora2">
+                +
+            </button>
+    
+        </div>
+    </div>
+
+    <div class="tiempo">
+        <input class="hora" type="time" id="appt" name="appt" min="09:00" max="18:00" required/>
+
+        <h6>Selecione hora de inicio</h6>
+
+    </div>
+
+    <div class="mascotas">
+        <h6>¿Do you have pets?</h6>
+          <input type="radio" name="select" id="option-1" checked>
+          <input type="radio" name="select" id="option-2">
+
+          <label for="option-1" class="option option-1">
+            <div class="dot"></div>
+            <span>Yes</span>
+          </label>
+
+          <label for="option-2" class="option option-2">
+            <div class="dot"></div>
+            <span>No</span>
+          </label>
+    </div>
+
+    <div class="mascotas2">
+        <h6>¿How many?</h6>
+        <div class="cont-mnp">
+          <span class="minus">-</span>
+          <span class="num">0</span>
+          <span class="plus">+</span>
+        </div>
+
+        <script>
+          const plus = document.querySelector(".plus"),
+           minus = document.querySelector(".minus"),
+           num = document.querySelector(".num");
+           let a = 1;
+           plus.addEventListener("click", ()=>{
+             a++;
+             a = (a < 10) ? "" + a : a;
+             num.innerText = a;
+           });
+           minus.addEventListener("click", ()=>{
+             if(a > 0){
+               a--;
+               a = (a < 10) ? "" + a : a;
+               num.innerText = a;
+             }
+           });
+       
+         </script>
+    </div>
+     
+
+    <footer>
+        <h3>Elego Solutions LLC</h3>
+        <div id="email">
+            <p>email:elegosolutionsllc@gmail.com</p>
+        </div>
+    </footer>
+
+</body>
+</html>

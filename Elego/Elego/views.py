@@ -1,0 +1,23 @@
+from django.shortcuts import render
+from django.views.generic import View
+
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        context={
+
+        }
+        return render(request,'index.html',context)
+    
+class HandyView(View):
+    def get(self, request, *args, **kwargs):
+        context={
+
+        }
+        return render(request,'handyman.html',context)
+
+class ReserveView(View):
+    def get(self, request, *args, **kwargs):
+        context={
+
+        }
+        return render(request,'reserve-responsive.html',context)
